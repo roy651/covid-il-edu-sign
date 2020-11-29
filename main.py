@@ -165,7 +165,7 @@ class TestInit():
 #     password = line.rstrip()
 
 args = []
-if len(sys.argv) > 0:
+if len(sys.argv) == 1:
   import fileinput
   args.append("_")
   for line in fileinput.input(files=('creds')):
