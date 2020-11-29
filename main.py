@@ -4,6 +4,8 @@ import time
 import random
 import smtplib
 import sys
+import os
+from pathlib import Path
 
 from selenium import webdriver
 from selenium.webdriver.common.by import By
@@ -14,6 +16,7 @@ from selenium.webdriver.support.expected_conditions import presence_of_element_l
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 from selenium.webdriver.firefox.options import Options
+from selenium.webdriver.firefox.firefox_binary import FirefoxBinary
 
 class TestInit():
 
@@ -26,7 +29,12 @@ class TestInit():
 
     options = Options()
     options.headless = True
-    self.driver = webdriver.Firefox(options=options, executable_path='./geckodriver')
+
+    if 'FF_PATH' in os.environ: 
+      binary = FirefoxBinary(os.environ['FF_PATH'])
+      self.driver = webdriver.Firefox(firefox_binary=binary, options=options, executable_path='./geckodriver')
+    else:
+      self.driver = webdriver.Firefox(options=options, executable_path='./geckodriver')
   
   def teardown(self):
     self.driver.quit()
@@ -166,10 +174,19 @@ class TestInit():
 
 args = []
 if len(sys.argv) == 1:
-  import fileinput
-  args.append("_")
-  for line in fileinput.input(files=('creds')):
-      args.append(line.rstrip())
+  cred_file = Path("creds")
+  if cred_file.is_file():
+    import fileinput
+    args.append("_")
+    for line in fileinput.input(files=('creds')):
+        args.append(line.rstrip())
+  else:
+    args.append("_")
+    args.append(os.environ['MAIL_USER'])
+    args.append(os.environ['MAIL_PASS'])
+    args.append(os.environ['MOE_USER'])
+    args.append(os.environ['MOE_PASS'])
+
 else:
   args = sys.argv
 
