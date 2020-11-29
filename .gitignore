@@ -3,3 +3,4 @@ creds
 *.side
 chromedriver
 .vscode/
+.DS_Store
