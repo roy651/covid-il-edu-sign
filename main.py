@@ -30,8 +30,11 @@ class TestInit():
     options = Options()
     options.headless = True
 
-    if 'FF_PATH' in os.environ: 
-      binary = FirefoxBinary(os.environ['FF_PATH'])
+    gecko_path = './geckodriver'
+    if 'GECKODRIVER_PATH' in os.environ: 
+      gecko_path = os.environ['GECKODRIVER_PATH']
+    if 'FIREFOX_BIN' in os.environ: 
+      binary = FirefoxBinary(os.environ['FIREFOX_BIN'])
       self.driver = webdriver.Firefox(firefox_binary=binary, options=options, executable_path='./geckodriver')
     else:
       self.driver = webdriver.Firefox(options=options, executable_path='./geckodriver')
