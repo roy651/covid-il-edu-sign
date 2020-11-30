@@ -1,5 +1,5 @@
 # covid-il-edu-sign
-
+(work-in-progress)
 ### Setup
 - Clone or download zip
 - Run 'pip install -r requirements.txt'
