@@ -34,10 +34,11 @@ python main.py {mail-user} {mail-pass} {MOE-login} {MOE-pass}
 - After setting up a python dyno using a python buildpack and pushing the project to heroku you'll need to add the below buildpack which includes the gecko driver and FF:
 `heroku buildpacks:add https://github.com/roy651/heroku-integrated-firefox-geckodriver`
 - You'll probably need to define all the config (env) vars properly as described in the other repsitory:
-FIREFOX_BIN: /app/vendor/firefox/firefox
-GECKODRIVER_PATH: /app/vendor/geckodriver/geckodriver
-LD_LIBRARY_PATH: /usr/local/lib:/usr/lib:/lib:/app/vendor
-PATH: /usr/local/bin:/usr/bin:/bin:/app/vendor/
+**FIREFOX_BIN**: */app/vendor/firefox/firefox*
+**GECKODRIVER_PATH**: */app/vendor/geckodriver/geckodriver*
+**LD_LIBRARY_PATH**: */usr/local/lib:/usr/lib:/lib:/app/vendor*
+**PATH**: */usr/local/bin:/usr/bin:/bin:/app/vendor/*
+
 - Finally - It is recommended to assign a Heroku scheduler in order to run a daily job at ~7:00 AM and launch the script
 
 
