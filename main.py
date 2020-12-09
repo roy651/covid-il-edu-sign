@@ -5,6 +5,7 @@ import random
 import smtplib
 import sys
 import os
+import datetime
 from pathlib import Path
 
 from selenium import webdriver
@@ -193,9 +194,11 @@ if len(sys.argv) == 1:
 else:
   args = sys.argv
 
-test = TestInit()
-result = 'Test not run'
-test.setup(args[1], args[2], args[3], args[4]) #password)
-result = test.test()
-test.teardown()
-test.send_mail("Finished with message:\n" + result)
+
+if datetime.datetime.today().weekday() < 6:
+  test = TestInit()
+  result = 'Test not run'
+  test.setup(args[1], args[2], args[3], args[4]) #password)
+  result = test.test()
+  test.teardown()
+  test.send_mail("Finished with message:\n" + result)
