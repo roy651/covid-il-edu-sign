@@ -6,6 +6,7 @@ import smtplib
 import sys
 import os
 import datetime
+import holidays
 from pathlib import Path
 
 from selenium import webdriver
@@ -194,11 +195,14 @@ if len(sys.argv) == 1:
 else:
   args = sys.argv
 
-
-if datetime.datetime.today().weekday() < 6:
+il_holidays = holidays.Israel()
+day = datetime.datetime.today() 
+if day.weekday() < 6 and day not in il_holidays:
   test = TestInit()
   result = 'Test not run'
   test.setup(args[1], args[2], args[3], args[4]) #password)
   result = test.test()
   test.teardown()
   test.send_mail("Finished with message:\n" + result)
+else:
+  print("Skipping day on no school: ", day)
