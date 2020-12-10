@@ -162,7 +162,7 @@ class TestInit():
     """ % (fromaddr, toaddrs, subj, msg)
 
     username = self.mail_user
-    password = 'aslzuazmuvgwvpwt'
+    password = self.mail_pass
     server = smtplib.SMTP('smtp.gmail.com:587')
     server.ehlo()
     server.starttls()
