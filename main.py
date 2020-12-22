@@ -157,7 +157,7 @@ class TestInit():
   def send_mail(self, msg):
     fromaddr = self.mail_user
     toaddrs  = self.mail_user
-    subj = 'Message from Health Bot'
+    subj = 'Message from Schooly Bot'
     # Prepare actual message
     message = """From: %s\nTo: %s\nSubject: %s\n\n%s
     """ % (fromaddr, toaddrs, subj, msg)
@@ -207,3 +207,5 @@ if day.weekday() != 5 and day.weekday() != 4 and day not in il_holidays:
   test.send_mail("Finished with message:\n" + result)
 else:
   print("Skipping day on no school: ", day)
+
+sys.exit()
