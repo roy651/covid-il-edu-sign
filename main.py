@@ -72,8 +72,8 @@ class TestInit():
         time.sleep(random.uniform(4, 6)) 
         self.driver.find_element(By.ID, "blocker").click()
       except Exception as e: 
-        print("Error: ", str(e))
-        return "Failed probably due to reCaptcha with error: " + str(e)
+        print("Error: ", type(e), " ", e.msg)
+        return "Failed probably due to reCaptcha with error: " + type(e) + " " + e.msg
 
 
       # 5 | type username
@@ -150,7 +150,7 @@ class TestInit():
       print("SUCCESS!")
       return "Successfuly signed the health statement!"
     except Exception as e: 
-      print("Error: ", str(e))
+      print("Error: ", type(e), " ", e.msg)
       return "Failed with error: " + str(e)
         
 
